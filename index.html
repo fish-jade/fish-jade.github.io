@@ -20,6 +20,9 @@
   <div id="container">
 
   </div>
+  <button onclick="handleState()">state</button>
+  <button onclick="handlePlay()">play</button>
+  <button onclick="handleVideoPlay()">video play</button>
   <script>
     const createVConsole = async () => {
       const script = document.createElement('script');
@@ -30,6 +33,21 @@
         new VConsole();
         const { createCameraVideoTrack } = __MLK_Agent
       const track = await createCameraVideoTrack();
+      window.handleState = () => {
+        const video = document.getElementsByTagName('video')[0]
+        console.log('wzw state', video.paused)
+      }
+      window.handlePlay = () => {
+        track.play(container);
+      }
+      window.handleVideoPlay = async () => {
+        const video = document.getElementsByTagName('video')[0]
+        try {
+          await video.play();
+        } catch (error) {
+          console.log('wzw dd', error)
+        }
+      }
       track.on("play-failed", (error) => {
         console.error('play error', error)
       })
