@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="./lib/index.umd.js"></script>
+
 </head>
+
 <body>
   hello world
+  <div id="container">
+
+  </div>
+  <script>
+    const createVConsole = () => {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/vconsole@latest/dist/vconsole.min.js';
+      document.body.appendChild(script);
+      script.addEventListener('load', () => {
+        // @ts-ignore
+        new VConsole();
+      });
+    };
+    (async function () {
+      const { createCameraVideoTrack } = __MLK_Agent
+      const track = createCameraVideoTrack();
+      try {
+        await track.play(container);
+      } catch (error) {
+        console.error('play error', error)
+      }
+    })()
+  </script>
 </body>
+
 </html>
