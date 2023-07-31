@@ -21,24 +21,23 @@
 
   </div>
   <script>
-    const createVConsole = () => {
+    const createVConsole = async () => {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/vconsole@latest/dist/vconsole.min.js';
       document.body.appendChild(script);
-      script.addEventListener('load', () => {
+      script.addEventListener('load',  async () => {
         // @ts-ignore
         new VConsole();
-      });
-    };
-    (async function () {
-      const { createCameraVideoTrack } = __MLK_Agent
+        const { createCameraVideoTrack } = __MLK_Agent
       const track = await createCameraVideoTrack();
       try {
         await track.play(container);
       } catch (error) {
         console.error('play error', error)
       }
-    })()
+      });
+    };
+    createVConsole()
   </script>
 </body>
 
