@@ -30,6 +30,9 @@
         new VConsole();
         const { createCameraVideoTrack } = __MLK_Agent
       const track = await createCameraVideoTrack();
+      track.on("play-failed", (error) => {
+        console.error('play error', error)
+      })
       try {
         await track.play(container);
       } catch (error) {
